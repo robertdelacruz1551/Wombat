@@ -17,15 +17,40 @@ import { CNavGroup, CNavItem, CNavTitle } from '@coreui/react'
 
 const _nav = [
   {
-    component: CNavItem,
-    name: 'Dashboard',
-    to: '/dashboard',
-    icon: <CIcon icon={cilSpeedometer} customClassName="nav-icon" />,
-    badge: {
-      color: 'info',
-      text: 'NEW',
-    },
+    component: CNavTitle,
+    name: 'Wombat',
   },
+  {
+    component: CNavItem,
+    name: 'Home',
+    to: '/',
+    icon: <CIcon icon={cilSpeedometer} customClassName="nav-icon" />,
+  },
+  {
+    component: CNavItem,
+    name: 'My Profile',
+    to: '/profile',
+    icon: <CIcon icon={cilCursor} customClassName="nav-icon" />,
+  },
+  {
+    component: CNavGroup,
+    name: 'Administrator',
+    to: '/administrator',
+    icon: <CIcon icon={cilCalculator} customClassName="nav-icon" />,
+    items: [
+      {
+        component: CNavItem,
+        name: 'Users',
+        to: '/administrator/users',
+      },
+      {
+        component: CNavItem,
+        name: 'Maps',
+        to: '/administrator/maps',
+      },
+    ],
+  },
+  // =======
   {
     component: CNavTitle,
     name: 'Theme',
@@ -44,7 +69,17 @@ const _nav = [
   },
   {
     component: CNavTitle,
-    name: 'Components',
+    name: 'Examples',
+  },
+  {
+    component: CNavItem,
+    name: 'Dashboard',
+    to: '/dashboard',
+    icon: <CIcon icon={cilSpeedometer} customClassName="nav-icon" />,
+    badge: {
+      color: 'info',
+      text: 'NEW',
+    },
   },
   {
     component: CNavGroup,
@@ -262,10 +297,6 @@ const _nav = [
       color: 'info',
       text: 'NEW',
     },
-  },
-  {
-    component: CNavTitle,
-    name: 'Extras',
   },
   {
     component: CNavGroup,
