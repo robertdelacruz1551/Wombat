@@ -4,6 +4,9 @@ const Dashboard = React.lazy(() => import('./views/dashboard/Dashboard'))
 const Colors = React.lazy(() => import('./views/theme/colors/Colors'))
 const Typography = React.lazy(() => import('./views/theme/typography/Typography'))
 
+// Wombat
+const MyProfile = React.lazy(() => import('./wombat/profile'))
+
 // Base
 const Accordion = React.lazy(() => import('./views/base/accordion/Accordion'))
 const Breadcrumbs = React.lazy(() => import('./views/base/breadcrumbs/Breadcrumbs'))
@@ -53,7 +56,7 @@ const Widgets = React.lazy(() => import('./views/widgets/Widgets'))
 const routes = [
   // Wombat pages
   { path: '/', exact: true, name: 'Home' },
-  { path: '/profile', name: 'My Profile', element: Typography },
+  { path: '/profile', name: 'My Profile', element: MyProfile },
   { path: '/admininstrator', name: 'Administrator', element: Typography },
   { path: '/admininstrator/users', name: 'Users', element: Typography },
   { path: '/admininstrator/maps', name: 'Maps', element: Typography },
