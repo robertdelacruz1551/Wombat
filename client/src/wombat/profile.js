@@ -12,7 +12,7 @@ import {
   CRow,
 } from '@coreui/react'
 
-const Tables = () => {
+const MyProfile = () => {
   return (
     <CRow>
       <CCol xs={6}>
@@ -50,4 +50,4 @@ const Tables = () => {
   )
 }
 
-export default Tables
+export default MyProfile
