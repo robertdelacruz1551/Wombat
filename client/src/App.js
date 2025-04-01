@@ -24,7 +24,7 @@ const isAuthenticated = () => {
 }
 
 // Protected route component
-const PrivateRoute = ({ children }) => {
+const RouteGuard = ({ children }) => {
   return isAuthenticated() ? children : <Navigate to="login" />
 }
 
@@ -64,9 +64,9 @@ const App = () => {
             path="*"
             name="Home"
             element={
-              <PrivateRoute>
+              <RouteGuard>
                 <DefaultLayout />
-              </PrivateRoute>
+              </RouteGuard>
             }
           />
         </Routes>

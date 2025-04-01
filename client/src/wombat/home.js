@@ -138,7 +138,7 @@ const Dashboard = () => {
           <CRow>
             <CCol sm={12}>
               <h4 id="traffic" className="card-title mb-0">
-                Traffic
+                Routines
               </h4>
               <div className="small text-body-secondary">January - July 2023</div>
             </CCol>
@@ -149,18 +149,16 @@ const Dashboard = () => {
               <CTable align="middle" className="mb-0 border" hover responsive>
                 <CTableHead className="text-nowrap">
                   <CTableRow>
+                    <CTableHeaderCell className="bg-body-tertiary text-center"></CTableHeaderCell>
+                    <CTableHeaderCell className="bg-body-tertiary">Name</CTableHeaderCell>
                     <CTableHeaderCell className="bg-body-tertiary text-center">
-                      {/* <CIcon icon={cilPeople} /> */}
+                      Time
                     </CTableHeaderCell>
-                    <CTableHeaderCell className="bg-body-tertiary">User</CTableHeaderCell>
+                    <CTableHeaderCell className="bg-body-tertiary">Map</CTableHeaderCell>
                     <CTableHeaderCell className="bg-body-tertiary text-center">
-                      Country
+                      Steps
                     </CTableHeaderCell>
-                    <CTableHeaderCell className="bg-body-tertiary">Usage</CTableHeaderCell>
-                    <CTableHeaderCell className="bg-body-tertiary text-center">
-                      Payment Method
-                    </CTableHeaderCell>
-                    <CTableHeaderCell className="bg-body-tertiary">Activity</CTableHeaderCell>
+                    <CTableHeaderCell className="bg-body-tertiary">Last Updated</CTableHeaderCell>
                   </CTableRow>
                 </CTableHead>
                 <CTableBody>

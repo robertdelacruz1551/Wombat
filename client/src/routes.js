@@ -56,11 +56,10 @@ const Widgets = React.lazy(() => import('./views/widgets/Widgets'))
 
 const routes = [
   // Wombat pages
-  { path: '/', name: 'Home', element: Home, exact: true },
-  { path: '/profile', name: 'My Profile', element: MyProfile },
-  { path: '/admininstrator', name: 'Administrator', element: Typography },
-  { path: '/admininstrator/users', name: 'Users', element: Typography },
-  { path: '/admininstrator/maps', name: 'Maps', element: Typography },
+  { path: '', name: 'Home', element: Home, exact: true },
+  { path: 'profile', name: 'My Profile', element: MyProfile },
+  { path: 'admininstrator/users', name: 'Users', element: Typography },
+  { path: 'admininstrator/maps', name: 'Maps', element: Typography },
 
   // Examples
   { path: '/dashboard', name: 'Dashboard', element: Dashboard },
