@@ -1,8 +1,7 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 import {
-  CProgress,
-  CAvatar,
   CCard,
   CCardBody,
   CCol,
@@ -13,126 +12,152 @@ import {
   CTableHead,
   CTableHeaderCell,
   CTableRow,
+  CWidgetStatsB,
+  CButton,
 } from '@coreui/react'
-import CIcon from '@coreui/icons-react'
-import {
-  cibCcAmex,
-  cibCcApplePay,
-  cibCcMastercard,
-  cibCcPaypal,
-  cibCcStripe,
-  cibCcVisa,
-  cifBr,
-  cifEs,
-  cifFr,
-  cifIn,
-  cifPl,
-  cifUs,
-} from '@coreui/icons'
-
-import avatar1 from 'src/assets/images/avatars/1.jpg'
-import avatar2 from 'src/assets/images/avatars/2.jpg'
-import avatar3 from 'src/assets/images/avatars/3.jpg'
-import avatar4 from 'src/assets/images/avatars/4.jpg'
-import avatar5 from 'src/assets/images/avatars/5.jpg'
-import avatar6 from 'src/assets/images/avatars/6.jpg'
-
-import WidgetsDropdown from '../views/widgets/WidgetsDropdown'
 
 const Dashboard = () => {
-  const tableExample = [
-    {
-      avatar: { src: avatar1, status: 'success' },
-      user: {
-        name: 'Yiorgos Avraamu',
-        new: true,
-        registered: 'Jan 1, 2023',
+  const data = {
+    stats: {
+      simulations: {
+        value: '10',
+        progress: 12,
       },
-      country: { name: 'USA', flag: cifUs },
-      usage: {
-        value: 50,
-        period: 'Jun 11, 2023 - Jul 10, 2023',
-        color: 'success',
+      successful: {
+        value: '89.9%',
+        progress: 75,
       },
-      payment: { name: 'Mastercard', icon: cibCcMastercard },
-      activity: '10 sec ago',
+      times: {
+        value: '89.9%',
+        progress: 75,
+      },
     },
-    {
-      avatar: { src: avatar2, status: 'danger' },
-      user: {
-        name: 'Avram Tarasios',
-        new: false,
-        registered: 'Jan 1, 2023',
+    routines: [
+      {
+        id: '1232323',
+        name: 'My first routine',
+        time: '10 sec ago',
+        obstacle: 'Gator tooth',
+        steps: 10,
+        latestRun: 'Jan 1, 2023',
       },
-      country: { name: 'Brazil', flag: cifBr },
-      usage: {
-        value: 22,
-        period: 'Jun 11, 2023 - Jul 10, 2023',
-        color: 'info',
+      {
+        id: '1232324',
+        name: 'My first routine',
+        time: '10 sec ago',
+        obstacle: 'Gator tooth',
+        steps: 10,
+        latestRun: 'Jan 1, 2023',
       },
-      payment: { name: 'Visa', icon: cibCcVisa },
-      activity: '5 minutes ago',
-    },
-    {
-      avatar: { src: avatar3, status: 'warning' },
-      user: { name: 'Quintin Ed', new: true, registered: 'Jan 1, 2023' },
-      country: { name: 'India', flag: cifIn },
-      usage: {
-        value: 74,
-        period: 'Jun 11, 2023 - Jul 10, 2023',
-        color: 'warning',
+      {
+        id: '1232325',
+        name: 'My first routine',
+        time: '10 sec ago',
+        obstacle: 'Gator tooth',
+        steps: 10,
+        latestRun: 'Jan 1, 2023',
       },
-      payment: { name: 'Stripe', icon: cibCcStripe },
-      activity: '1 hour ago',
-    },
-    {
-      avatar: { src: avatar4, status: 'secondary' },
-      user: { name: 'Enéas Kwadwo', new: true, registered: 'Jan 1, 2023' },
-      country: { name: 'France', flag: cifFr },
-      usage: {
-        value: 98,
-        period: 'Jun 11, 2023 - Jul 10, 2023',
-        color: 'danger',
+      {
+        id: '1232326',
+        name: 'My first routine',
+        time: '10 sec ago',
+        obstacle: 'Gator tooth',
+        steps: 10,
+        latestRun: 'Jan 1, 2023',
       },
-      payment: { name: 'PayPal', icon: cibCcPaypal },
-      activity: 'Last month',
-    },
-    {
-      avatar: { src: avatar5, status: 'success' },
-      user: {
-        name: 'Agapetus Tadeáš',
-        new: true,
-        registered: 'Jan 1, 2023',
+    ],
+    maps: [
+      {
+        id: '8293282',
+        name: 'Gattor Tooth',
+        description: 'A small map designed to introduce the application to the player',
+        obstacles: 0,
+        size: 9,
       },
-      country: { name: 'Spain', flag: cifEs },
-      usage: {
-        value: 22,
-        period: 'Jun 11, 2023 - Jul 10, 2023',
-        color: 'primary',
-      },
-      payment: { name: 'Google Wallet', icon: cibCcApplePay },
-      activity: 'Last week',
-    },
-    {
-      avatar: { src: avatar6, status: 'danger' },
-      user: {
-        name: 'Friderik Dávid',
-        new: true,
-        registered: 'Jan 1, 2023',
-      },
-      country: { name: 'Poland', flag: cifPl },
-      usage: {
-        value: 43,
-        period: 'Jun 11, 2023 - Jul 10, 2023',
-        color: 'success',
-      },
-      payment: { name: 'Amex', icon: cibCcAmex },
-      activity: 'Last week',
-    },
-  ]
+    ],
+  }
+
   return (
     <>
-      <WidgetsDropdown className="mb-4" />
+      <CRow>
+        <CCol xs={6}>
+          <CWidgetStatsB
+            className="mb-3"
+            color="success"
+            inverse
+            progress={{ value: data.stats.simulations.progress }}
+            text="Progress"
+            title="Simulations"
+            value={data.stats.simulations.value}
+          />
+        </CCol>
+        <CCol xs={3}>
+          <CWidgetStatsB
+            className="mb-3"
+            color="primary"
+            inverse
+            progress={{ value: data.stats.successful.progress }}
+            text="Progress"
+            title="Successful simulations"
+            value={data.stats.successful.value}
+          />
+        </CCol>
+        <CCol xs={3}>
+          <CWidgetStatsB
+            className="mb-3"
+            color="primary"
+            inverse
+            progress={{ value: data.stats.times.progress }}
+            text="Progress"
+            title="Best time"
+            value={data.stats.times.value}
+          />
+        </CCol>
+      </CRow>
+      <CCard className="mb-4">
+        <CCardBody>
+          <CRow>
+            <CCol sm={12}>
+              <h4 id="traffic" className="card-title mb-0">
+                Maps
+              </h4>
+            </CCol>
+          </CRow>
+          <br />
+          <CRow>
+            <CCol sm={12} className="d-none d-md-block">
+              <CTable align="moddle" className="mb-0 border" hover responsive>
+                <CTableHead className="text-nowrap">
+                  <CTableRow>
+                    <CTableHeaderCell className="bg-body-tertiary"></CTableHeaderCell>
+                    <CTableHeaderCell className="bg-body-tertiary">Name</CTableHeaderCell>
+                    <CTableHeaderCell className="bg-body-tertiary">Description</CTableHeaderCell>
+                    <CTableHeaderCell className="bg-body-tertiary">Obstacles</CTableHeaderCell>
+                    <CTableHeaderCell className="bg-body-tertiary">Size</CTableHeaderCell>
+                  </CTableRow>
+                </CTableHead>
+                <CTableBody>
+                  {data.maps.map((item, index) => (
+                    <CTableRow v-for="item in tableItems" key={index}>
+                      <CTableDataCell className="text-left">
+                        <Link to={`map/${item.id}`}>
+                          <CButton color="primary" size="sm">
+                            Play
+                          </CButton>
+                        </Link>
+                      </CTableDataCell>
+                      <CTableDataCell className="text-left">{item.name}</CTableDataCell>
+                      <CTableDataCell className="text-left">{item.description}</CTableDataCell>
+                      <CTableDataCell className="text-left">{item.obstacles}</CTableDataCell>
+                      <CTableDataCell className="text-left">{item.size}</CTableDataCell>
+                    </CTableRow>
+                  ))}
+                </CTableBody>
+              </CTable>
+            </CCol>
+          </CRow>
+        </CCardBody>
+      </CCard>
       <CCard className="mb-4">
         <CCardBody>
           <CRow>
@@ -140,59 +165,31 @@ const Dashboard = () => {
               <h4 id="traffic" className="card-title mb-0">
                 Routines
               </h4>
-              <div className="small text-body-secondary">January - July 2023</div>
             </CCol>
           </CRow>
           <br />
           <CRow>
             <CCol sm={12} className="d-none d-md-block">
-              <CTable align="middle" className="mb-0 border" hover responsive>
+              <CTable align="moddle" className="mb-0 border" hover responsive>
                 <CTableHead className="text-nowrap">
                   <CTableRow>
-                    <CTableHeaderCell className="bg-body-tertiary text-center"></CTableHeaderCell>
                     <CTableHeaderCell className="bg-body-tertiary">Name</CTableHeaderCell>
-                    <CTableHeaderCell className="bg-body-tertiary text-center">
-                      Time
+                    <CTableHeaderCell className="bg-body-tertiary">Time</CTableHeaderCell>
+                    <CTableHeaderCell className="bg-body-tertiary">Obstacle</CTableHeaderCell>
+                    <CTableHeaderCell className="bg-body-tertiary">Steps</CTableHeaderCell>
+                    <CTableHeaderCell className="bg-body-tertiary">
+                      Latest Simulation
                     </CTableHeaderCell>
-                    <CTableHeaderCell className="bg-body-tertiary">Map</CTableHeaderCell>
-                    <CTableHeaderCell className="bg-body-tertiary text-center">
-                      Steps
-                    </CTableHeaderCell>
-                    <CTableHeaderCell className="bg-body-tertiary">Last Updated</CTableHeaderCell>
                   </CTableRow>
                 </CTableHead>
                 <CTableBody>
-                  {tableExample.map((item, index) => (
+                  {data.routines.map((item, index) => (
                     <CTableRow v-for="item in tableItems" key={index}>
-                      <CTableDataCell className="text-center">
-                        <CAvatar size="md" src={item.avatar.src} status={item.avatar.status} />
-                      </CTableDataCell>
-                      <CTableDataCell>
-                        <div>{item.user.name}</div>
-                        <div className="small text-body-secondary text-nowrap">
-                          <span>{item.user.new ? 'New' : 'Recurring'}</span> | Registered:{' '}
-                          {item.user.registered}
-                        </div>
-                      </CTableDataCell>
-                      <CTableDataCell className="text-center">
-                        <CIcon size="xl" icon={item.country.flag} title={item.country.name} />
-                      </CTableDataCell>
-                      <CTableDataCell>
-                        <div className="d-flex justify-content-between text-nowrap">
-                          <div className="fw-semibold">{item.usage.value}%</div>
-                          <div className="ms-3">
-                            <small className="text-body-secondary">{item.usage.period}</small>
-                          </div>
-                        </div>
-                        <CProgress thin color={item.usage.color} value={item.usage.value} />
-                      </CTableDataCell>
-                      <CTableDataCell className="text-center">
-                        <CIcon size="xl" icon={item.payment.icon} />
-                      </CTableDataCell>
-                      <CTableDataCell>
-                        <div className="small text-body-secondary text-nowrap">Last login</div>
-                        <div className="fw-semibold text-nowrap">{item.activity}</div>
-                      </CTableDataCell>
+                      <CTableDataCell className="text-left">{item.name}</CTableDataCell>
+                      <CTableDataCell className="text-left">{item.time}</CTableDataCell>
+                      <CTableDataCell className="text-left">{item.obstacle}</CTableDataCell>
+                      <CTableDataCell className="text-left">{item.steps}</CTableDataCell>
+                      <CTableDataCell className="text-left">{item.latestRun}</CTableDataCell>
                     </CTableRow>
                   ))}
                 </CTableBody>

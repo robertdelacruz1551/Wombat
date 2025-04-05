@@ -1,1 +1,32 @@
 // Here you can add other styles
+.gameboard {
+  border: 1px solid #ffffff;
+  border-collapse: collapse;
+}
+
+.gameboard td, .gameboard th {
+  border: 1px solid #ffffff; /* Style the cell borders */
+  padding: 8px; /* Optional: Add some padding to cells */
+  width: 50px;
+  height: 50px;
+}
+
+.hero-background {
+  background-image: url('../assets/images/map/hero.png');;
+  background-size: 100%; /* Adjust size as needed */
+}
+
+.grass-path-background {
+  background-image: url('../assets/images/map/grass-path.png');;
+  background-size: 100%; /* Adjust size as needed */
+}
+
+.dirt-path-background {
+  background-image: url('../assets/images/map/dirt-path.png');;
+  background-size: 100%; /* Adjust size as needed */
+}
+
+.rock-wall-background {
+  background-image: url('../assets/images/map/rock-wall.png');;
+  background-size: 100%; /* Adjust size as needed */
+}

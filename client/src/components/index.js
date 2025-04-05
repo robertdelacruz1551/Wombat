@@ -8,6 +8,8 @@ import DocsCallout from './DocsCallout'
 import DocsLink from './DocsLink'
 import DocsExample from './DocsExample'
 
+import Board from './Wombat/Board'
+
 export {
   AppBreadcrumb,
   AppContent,
@@ -18,4 +20,5 @@ export {
   DocsCallout,
   DocsLink,
   DocsExample,
+  Board,
 }

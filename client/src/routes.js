@@ -6,6 +6,7 @@ const Typography = React.lazy(() => import('./views/theme/typography/Typography'
 
 // Wombat
 const Home = React.lazy(() => import('./wombat/home'))
+const Map = React.lazy(() => import('./wombat/map'))
 const MyProfile = React.lazy(() => import('./wombat/profile'))
 
 // Base
@@ -57,6 +58,7 @@ const Widgets = React.lazy(() => import('./views/widgets/Widgets'))
 const routes = [
   // Wombat pages
   { path: '', name: 'Home', element: Home, exact: true },
+  { path: 'map/:id', name: 'Map', element: Map, exact: true },
   { path: 'profile', name: 'My Profile', element: MyProfile },
   { path: 'admininstrator/users', name: 'Users', element: Typography },
   { path: 'admininstrator/maps', name: 'Maps', element: Typography },
