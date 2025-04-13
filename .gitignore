@@ -1,6 +1,6 @@
 /.DS_Store
 client/node_modules
-server/node_modules
+api/node_modules
 client/package-lock.json
-server/package-lock.json
-server/prisma/migrations/migration_lock.toml
+api/package-lock.json
+api/prisma/migrations/migration_lock.toml
