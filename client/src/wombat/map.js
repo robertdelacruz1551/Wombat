@@ -26,17 +26,6 @@ const MapDetails = () => {
       <CRow>
         <CCol xs={12}>
           <Board layout={data.board.layout} />
-          {/* <table className="gameboard">
-            <tbody>
-              {data.board.layout.map((row) => (
-                <tr>
-                  {row.map((cell) => (
-                    <td className={cell}></td>
-                  ))}
-                </tr>
-              ))}
-            </tbody>
-          </table> */}
         </CCol>
       </CRow>
     </>

@@ -3,7 +3,16 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 const Board = ({ layout }) => {
-  const Row = ({ row, rowIndex }) => {
+  //  /** walkable-space, obstacle-space, start-space, end-space */
+  // const layout_ = [
+  //   [
+  //     {
+  //       type: 'walkable-space',
+  //     }
+  //   ]
+  // ]
+
+  const Row = ({ row, _ }) => {
     return (
       <tr>
         {row.map((cell, cellIndex) => (
@@ -26,6 +35,7 @@ const Board = ({ layout }) => {
 
 Board.propTypes = {
   layout: PropTypes.array,
+  // editing: PropTypes.bool,
 }
 
 export default React.memo(Board)
