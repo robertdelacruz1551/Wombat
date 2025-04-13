@@ -1,6 +1,5 @@
 var cors = require('cors');
-var { PrismaClient } = require('@prisma/client/edge');
-var { withAccelerate } = require('@prisma/extension-accelerate');
+var { PrismaClient } = require('@prisma/client');
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -25,8 +24,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// var prisma = new PrismaClient().$extends(withAccelerate());
-
+var prisma = new PrismaClient();
 
 // Add the routes to the app
 app.use('/', indexRouter);

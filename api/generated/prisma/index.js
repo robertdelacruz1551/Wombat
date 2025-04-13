@@ -127,7 +127,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "/Users/Rob/Documents/workspace/Northeastern/CD5610/Wombat/server/generated/prisma",
+      "value": "/Users/Rob/Documents/workspace/Northeastern/CD5610/Wombat/api/generated/prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -141,7 +141,7 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "/Users/Rob/Documents/workspace/Northeastern/CD5610/Wombat/server/prisma/schema.prisma",
+    "sourceFilePath": "/Users/Rob/Documents/workspace/Northeastern/CD5610/Wombat/api/prisma/schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
