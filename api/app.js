@@ -12,7 +12,12 @@ var authenticate = require('./routes/authenticate');
 var authenticated = require('./routes/authenticated');
 
 var app = express();
-app.use(cors({ origin: "http://localhost:4000", credentials: true }));
+app.use(cors({
+  origin: "http://localhost:3000", 
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true,
+  optionsSuccessStatus: 204,
+}));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -20,15 +25,21 @@ app.set('view engine', 'pug');
 
 app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 var prisma = new PrismaClient();
 
+// add the database to incoming request objects as meddleware
+app.use((req, res, next) => {
+  req.app.locals.db = prisma; // Make db available to routes
+  next();
+});
+
 // Add the routes to the app
 app.use('/', indexRouter);
-app.use('/authendicate', authenticate);
+app.use('/authenticate', authenticate);
 app.use('/authenticated', authenticated);
 
 
