@@ -1,4 +1,5 @@
-import React from 'react'
+/* eslint-disable prettier/prettier */
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
 import {
@@ -17,65 +18,39 @@ import {
 } from '@coreui/react'
 
 const Dashboard = () => {
-  const data = {
+  const [data, setData] = useState({
     stats: {
-      simulations: {
-        value: '10',
-        progress: 12,
-      },
-      successful: {
-        value: '89.9%',
-        progress: 75,
-      },
-      times: {
-        value: '89.9%',
-        progress: 75,
-      },
+      simulations: {value: '0', progress: 12},
+      successful: {value: '0', progress: 12},
+      times: {value: '0', progress: 12},
     },
-    routines: [
-      {
-        id: '1232323',
-        name: 'My first routine',
-        time: '10 sec ago',
-        obstacle: 'Gator tooth',
-        steps: 10,
-        latestRun: 'Jan 1, 2023',
-      },
-      {
-        id: '1232324',
-        name: 'My first routine',
-        time: '10 sec ago',
-        obstacle: 'Gator tooth',
-        steps: 10,
-        latestRun: 'Jan 1, 2023',
-      },
-      {
-        id: '1232325',
-        name: 'My first routine',
-        time: '10 sec ago',
-        obstacle: 'Gator tooth',
-        steps: 10,
-        latestRun: 'Jan 1, 2023',
-      },
-      {
-        id: '1232326',
-        name: 'My first routine',
-        time: '10 sec ago',
-        obstacle: 'Gator tooth',
-        steps: 10,
-        latestRun: 'Jan 1, 2023',
-      },
-    ],
-    maps: [
-      {
-        id: '8293282',
-        name: 'Gattor Tooth',
-        description: 'A small map designed to introduce the application to the player',
-        obstacles: 0,
-        size: 9,
-      },
-    ],
+    routines: [],
+    maps: []
+  })
+  
+  const load = async () => {
+    // event.preventDefault()
+    try {
+      const response = await fetch('http://localhost:4000/authenticated/home', {
+        method: 'GET', 
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('token')}`,
+        },
+      })
+
+      if (response.ok) {
+        const data = await response.json()
+        setData(data)
+      }
+    } catch (error) {
+      console.error('Error during login:' + error)
+    }
   }
+
+  useEffect(() => {
+    load()
+  }, [])
 
   return (
     <>
