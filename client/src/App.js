@@ -11,16 +11,15 @@ import './scss/style.scss'
 const DefaultLayout = React.lazy(() => import('./layout/DefaultLayout'))
 
 // Pages
-const Login = React.lazy(() => import('./views/pages/login/Login'))
-const Register = React.lazy(() => import('./views/pages/register/Register'))
-const Page404 = React.lazy(() => import('./views/pages/page404/Page404'))
-const Page500 = React.lazy(() => import('./views/pages/page500/Page500'))
+const Login = React.lazy(() => import('./wombat/Login'))
+const Register = React.lazy(() => import('./wombat/Register'))
+const Page404 = React.lazy(() => import('./wombat/Page404'))
+const Page500 = React.lazy(() => import('./wombat/Page500'))
 
 // Mock authentication function
 const isAuthenticated = () => {
   // Replace this with your actual authentication logic
-  // return !!localStorage.getItem('token')
-  return true
+  return !!localStorage.getItem('token')
 }
 
 // Protected route component
