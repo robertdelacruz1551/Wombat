@@ -1,3 +1,5 @@
+/* eslint-disable no-const-assign */
+/* eslint-disable prettier/prettier */
 import React, { Suspense, useEffect } from 'react'
 import { HashRouter, Route, Routes, Navigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
@@ -5,7 +7,8 @@ import { useSelector } from 'react-redux'
 import { CSpinner, useColorModes } from '@coreui/react'
 import './scss/style.scss'
 
-/* eslint-disable react/prop-types */ // TODO: upgrade to latest eslint tooling
+/* eslint-disable react/prop-types */ 
+// TODO: upgrade to latest eslint tooling
 
 // Containers
 const DefaultLayout = React.lazy(() => import('./layout/DefaultLayout'))
@@ -18,7 +21,6 @@ const Page500 = React.lazy(() => import('./wombat/Page500'))
 
 // Mock authentication function
 const isAuthenticated = () => {
-  // Replace this with your actual authentication logic
   return !!localStorage.getItem('token')
 }
 

@@ -40,7 +40,8 @@ const Login = () => {
       if (response.ok) {
         const data = await response.json()
         localStorage.setItem('token', data.token)
-        navigate('home')
+        localStorage.setItem('user', data.id)
+        navigate('../home')
       } else {
         setMessage('Login failed:' + response.status)
       }

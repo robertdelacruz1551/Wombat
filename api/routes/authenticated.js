@@ -5,7 +5,6 @@ var jwt = require('jsonwebtoken');
 function requireAuth(req, res, next) {
   // const token = req.cookies.token;
   const token = req.headers['authorization'].split(' ')[1];;
-  console.log("Received")
   if (!token) {
     return res.status(401).json({ error: "Stranger danger!" });
   }
@@ -90,6 +89,13 @@ router.get('/home', function(req, res) {
   res.json(data);
 })
 
-
+router.post('/profile', function(req, res) {
+  const data = {
+    name: 'Robert De La Cruz',
+    email: 'robert.delacruz1551@hotmail.com',
+    bio: 'This is bio...',
+  };
+  res.json(data);
+})
 
 module.exports = router;

@@ -42,6 +42,8 @@ const Dashboard = () => {
       if (response.ok) {
         const data = await response.json()
         setData(data)
+      } else {
+        localStorage.removeItem('token')
       }
     } catch (error) {
       console.error('Error during login:' + error)
