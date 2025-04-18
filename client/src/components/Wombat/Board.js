@@ -1,22 +1,40 @@
+/* eslint-disable prettier/prettier */
 /* eslint-disable react/prop-types */
 import React from 'react'
 import PropTypes from 'prop-types'
 
 const Board = ({ layout }) => {
   //  /** walkable-space, obstacle-space, start-space, end-space */
-  // const layout_ = [
-  //   [
-  //     {
-  //       type: 'walkable-space',
-  //     }
-  //   ]
-  // ]
-
+  const creatBackground = (cell) => {
+    let klass = 'grass-path-background'
+    switch (cell) {
+      case -1:
+        klass = 'rock-wall-background'
+        break;
+      case  1:
+        klass = 'hero-background'
+        break;
+      case  2:
+        klass = 'start-background'
+        break;
+      case  3:
+        klass = 'end-background'
+        break;
+      default:
+        klass = 'grass-path-background'
+        break;
+    }
+    return klass
+  }
+  
   const Row = ({ row, _ }) => {
     return (
       <tr>
         {row.map((cell, cellIndex) => (
-          <td key={cellIndex} className={cell}></td>
+          <td 
+            key={cellIndex} 
+            className={creatBackground(cell)}
+          ></td>
         ))}
       </tr>
     )

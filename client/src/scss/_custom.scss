@@ -12,7 +12,7 @@
 }
 
 .hero-background {
-  background-image: url('../assets/images/map/hero.png');;
+  background-image: url('../assets/images/map/hero-background.png');;
   background-size: 100%; /* Adjust size as needed */
 }
 
@@ -28,5 +28,15 @@
 
 .rock-wall-background {
   background-image: url('../assets/images/map/rock-wall.png');;
+  background-size: 100%; /* Adjust size as needed */
+}
+
+.start-background {
+  background-image: url('../assets/images/map/start-background.png');;
+  background-size: 100%; /* Adjust size as needed */
+}
+
+.end-background {
+  background-image: url('../assets/images/map/end-background.png');;
   background-size: 100%; /* Adjust size as needed */
 }

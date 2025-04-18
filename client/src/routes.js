@@ -7,6 +7,7 @@ const Typography = React.lazy(() => import('./views/theme/typography/Typography'
 // Wombat
 const Home = React.lazy(() => import('./wombat/home'))
 const Map = React.lazy(() => import('./wombat/map'))
+const Play = React.lazy(() => import('./wombat/play'))
 const MyProfile = React.lazy(() => import('./wombat/profile'))
 
 // Base
@@ -60,6 +61,7 @@ const routes = [
   { path: '/', name: 'Home', element: Home, exact: true },
   { path: '/home', name: 'Home', element: Home, exact: true },
   { path: '/map/:id', name: 'Map', element: Map, exact: true },
+  { path: '/map/:id/play', name: 'Map', element: Play, exact: true },
   { path: '/profile', name: 'My Profile', element: MyProfile },
   { path: '/admininstrator/users', name: 'Users', element: Typography },
   { path: '/admininstrator/maps', name: 'Maps', element: Typography },

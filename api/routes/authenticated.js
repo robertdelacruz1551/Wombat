@@ -98,4 +98,38 @@ router.post('/profile', function(req, res) {
   res.json(data);
 })
 
+router.get('/map/:id', function(req, res) {
+  const data = {
+    title: 'Simple board game',
+    description: 'A small map designed to introduce the application to the player',
+    board: {
+      layout: [
+        [1,  0,  0,  0,  0],
+        [0, -1,  0, -1,  0],
+        [0, -1,  0,  0,  0],
+        [0, -1, -1,  0, -1],
+        [0,  0,  0,  3,  0],
+      ],
+    },
+  }
+  res.json(data);  
+})
+
+router.get('/play/:id', function(req, res) {
+  const data = {
+    title: 'Simple board game',
+    description: 'A small map designed to introduce the application to the player',
+    board: {
+      layout: [
+        [1,  0,  0,  0,  0],
+        [0, -1,  0, -1,  0],
+        [0, -1,  0,  0,  0],
+        [0, -1, -1,  0, -1],
+        [0,  0,  0,  3,  0],
+      ],
+    },
+  }
+  res.json(data);  
+})
+
 module.exports = router;

@@ -1,5 +1,6 @@
 /* eslint-disable prettier/prettier */
 import React, { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import {
   CButton,
   CCard,
@@ -17,9 +18,9 @@ const MyProfile = () => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [bio, setBio] = useState('')
+  const navigate = useNavigate()
 
   const load = async () => {
-    // event.preventDefault()
     try {
       const response = await fetch('http://localhost:4000/authenticated/profile', {
         method: 'POST', 
@@ -39,6 +40,7 @@ const MyProfile = () => {
         setBio(data.bio)
       } else {
         localStorage.removeItem('token')
+        navigate('../login')
       }
     } catch (error) {
       console.error('Error during login:' + error)

@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 import {
   CCard,
@@ -27,6 +27,7 @@ const Dashboard = () => {
     routines: [],
     maps: []
   })
+  const navigate = useNavigate()
   
   const load = async () => {
     // event.preventDefault()
@@ -44,6 +45,7 @@ const Dashboard = () => {
         setData(data)
       } else {
         localStorage.removeItem('token')
+        navigate('../login')
       }
     } catch (error) {
       console.error('Error during login:' + error)
@@ -117,9 +119,9 @@ const Dashboard = () => {
                   {data.maps.map((item, index) => (
                     <CTableRow v-for="item in tableItems" key={index}>
                       <CTableDataCell className="text-left">
-                        <Link to={`map/${item.id}`}>
+                        <Link to={`/map/${item.id}`}>
                           <CButton color="primary" size="sm">
-                            Play
+                            View
                           </CButton>
                         </Link>
                       </CTableDataCell>
