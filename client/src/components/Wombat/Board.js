@@ -7,7 +7,11 @@ const Board = ({ layout }) => {
   //  /** walkable-space, obstacle-space, start-space, end-space */
   const creatBackground = (cell) => {
     let klass = 'grass-path-background'
-    switch (cell) {
+    let c = cell.at(-1)
+    switch (c) {
+      case -2:
+        klass = 'traveled-background'
+        break;
       case -1:
         klass = 'rock-wall-background'
         break;
@@ -21,12 +25,11 @@ const Board = ({ layout }) => {
         klass = 'end-background'
         break;
       default:
-        klass = 'grass-path-background'
         break;
     }
     return klass
   }
-  
+
   const Row = ({ row, _ }) => {
     return (
       <tr>
