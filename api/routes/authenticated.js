@@ -104,12 +104,16 @@ router.get('/map/:id', function(req, res) {
     description: 'A small map designed to introduce the application to the player',
     board: {
       layout: [
-        [1,  0,  0,  0,  0],
-        [0, -1,  0, -1,  0],
-        [0, -1,  0,  0,  0],
-        [0, -1, -1,  0, -1],
-        [0,  0,  0,  3,  0],
+        [[0,1],[0],  [0],  [0],  [0]],
+        [[0], [-1],  [0], [-1],  [0]],
+        [[0], [-1],  [0],  [0],  [0]],
+        [[0], [-1], [-1],  [0], [-1]],
+        [[0],  [0],  [0],  [3],  [0]],
       ],
+      start: [0,0],
+      end: [4,3],
+      current: [0,0],
+      obstacles: 6,
     },
   }
   res.json(data);  
@@ -121,15 +125,31 @@ router.get('/play/:id', function(req, res) {
     description: 'A small map designed to introduce the application to the player',
     board: {
       layout: [
-        [1,  0,  0,  0,  0],
-        [0, -1,  0, -1,  0],
-        [0, -1,  0,  0,  0],
-        [0, -1, -1,  0, -1],
-        [0,  0,  0,  3,  0],
+        [[0,1],[0],  [0],  [0],  [0]],
+        [[0], [-1],  [0], [-1],  [0]],
+        [[0], [-1],  [0],  [0],  [0]],
+        [[0], [-1], [-1],  [0], [-1]],
+        [[0],  [0],  [0],  [3],  [0]],
       ],
+      start: [0,0],
+      end: [4,3],
+      current: [0,0],
+      obstacles: 6,
     },
   }
   res.json(data);  
+})
+
+router.put('/simulation-save', function(req, res) {
+  console.log(req.body);
+  // {
+  //   user: 1,
+  //   map: 'Simple board game',
+  //   time: '6.263 seconds',
+  //   obstacles: 6,
+  //   steps: 7,
+  //   success: true
+  // }
 })
 
 module.exports = router;
