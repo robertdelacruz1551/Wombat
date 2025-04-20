@@ -25,7 +25,7 @@ function requireAuth(req, res, next) {
  */
 router.use('/*', requireAuth);
 
-router.get('/ping', function(req, res) {
+router.post('/ping', function(req, res) {
   res.status(200)
 })
 

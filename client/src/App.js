@@ -20,8 +20,28 @@ const Page404 = React.lazy(() => import('./wombat/Page404'))
 const Page500 = React.lazy(() => import('./wombat/Page500'))
 
 // Mock authentication function
-const isAuthenticated = () => {
-  return !!localStorage.getItem('token')
+// const isAuthenticated = () => {
+//   return !!localStorage.getItem('token')
+// }
+const isAuthenticated = async () => {
+  const token = localStorage.getItem('token')
+  console.log('running RouteGuard')
+  if (!token) {
+    return false
+  } else {
+    try {
+      const response = await fetch('http://localhost:4000/authenticate/ping', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+        }
+      })
+      return response.ok
+    } catch (error) {
+      return false
+    }
+  }
 }
 
 // Protected route component

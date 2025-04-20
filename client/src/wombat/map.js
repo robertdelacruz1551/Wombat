@@ -2,11 +2,10 @@
 import React, { useState, useEffect } from 'react'
 import { CCol, CRow, CButton } from '@coreui/react'
 import { Board } from 'src/components'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 
 const MapDetails = () => {
   const { id } = useParams()
-  const navigate = useNavigate()
   const [data, setData] = useState({
     title: undefined,
     description: undefined,
@@ -25,9 +24,6 @@ const MapDetails = () => {
     if (response.ok) {
       const data = await response.json()
       setData(data)
-    } else {
-      localStorage.removeItem('token')
-      navigate('/login')
     }
   }
 

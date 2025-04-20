@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import React, { useState, useEffect } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 import {
   CCard,
@@ -27,7 +27,6 @@ const Dashboard = () => {
     routines: [],
     maps: []
   })
-  const navigate = useNavigate()
   
   const load = async () => {
     // event.preventDefault()
@@ -43,9 +42,6 @@ const Dashboard = () => {
       if (response.ok) {
         const data = await response.json()
         setData(data)
-      } else {
-        localStorage.removeItem('token')
-        navigate('../login')
       }
     } catch (error) {
       console.error('Error during login:' + error)

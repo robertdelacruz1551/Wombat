@@ -52,9 +52,6 @@ const MyProfile = () => {
         setName(data.name)
         setEmail(data.email)
         setBio(data.bio)
-      } else {
-        localStorage.removeItem('token')
-        navigate('../login')
       }
     } catch (error) {
       console.error('Error during login:' + error)
