@@ -1,3 +1,4 @@
+import { element } from 'prop-types'
 import React from 'react'
 
 const Dashboard = React.lazy(() => import('./views/dashboard/Dashboard'))
@@ -7,8 +8,11 @@ const Typography = React.lazy(() => import('./views/theme/typography/Typography'
 // Wombat
 const Home = React.lazy(() => import('./wombat/home'))
 const Map = React.lazy(() => import('./wombat/map'))
+const MapEditor = React.lazy(() => import('./wombat/mapEditor'))
 const Play = React.lazy(() => import('./wombat/play'))
 const MyProfile = React.lazy(() => import('./wombat/profile'))
+const Users = React.lazy(() => import('./wombat/users'))
+const Maps = React.lazy(() => import('./wombat/maps'))
 
 // Base
 const Accordion = React.lazy(() => import('./views/base/accordion/Accordion'))
@@ -61,10 +65,11 @@ const routes = [
   { path: '/', name: 'Home', element: Home, exact: true },
   { path: '/home', name: 'Home', element: Home, exact: true },
   { path: '/map/:id', name: 'Map', element: Map, exact: true },
-  { path: '/map/:id/play', name: 'Map', element: Play, exact: true },
+  { path: '/map/:id/play', name: 'Play', element: Play, exact: true },
+  { path: '/map/:id/editor', name: 'Editor', element: MapEditor, exact: true },
   { path: '/profile', name: 'My Profile', element: MyProfile },
-  { path: '/admininstrator/users', name: 'Users', element: Typography },
-  { path: '/admininstrator/maps', name: 'Maps', element: Typography },
+  { path: '/administrator/users', name: 'Users', element: Users },
+  { path: '/administrator/maps', name: 'Maps', element: Maps },
 
   // Examples
   { path: '/dashboard', name: 'Dashboard', element: Dashboard },

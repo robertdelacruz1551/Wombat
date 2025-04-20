@@ -20,6 +20,20 @@ const MyProfile = () => {
   const [bio, setBio] = useState('')
   const navigate = useNavigate()
 
+  const handleNameChange = (event) => {
+    if (event.target.name !== '') {
+      setName(event.target.name)
+    }
+  }
+
+  const handleEmailChange = (event) => {
+    if (event.target.email !== '') {
+      setEmail(event.target.email) 
+    }
+  }
+
+  const handleBioChange = (event) => { setBio(event.target.bio) }
+
   const load = async () => {
     try {
       const response = await fetch('http://localhost:4000/authenticated/profile', {
@@ -47,9 +61,29 @@ const MyProfile = () => {
     }
   }
 
+  const save = async () => {
+    try {
+      await fetch('http://localhost:4000/authenticated/profile-save', {
+        method: 'PUT', 
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('token')}`,
+        },
+        body: JSON.stringify({
+          id: Number(localStorage.getItem('user')),
+          name: name,
+          email: email,
+          bio: bio,
+        }),
+      })
+    } catch (error) {
+      console.error('Error during saving profile:' + error)
+    }
+  }
+
   useEffect(() => {
     load()
-  }, [])
+  }, [])// eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <CRow>
@@ -68,7 +102,7 @@ const MyProfile = () => {
                 <CFormInput 
                   id="fullname" 
                   value={name}
-                  onChange={setName}
+                  onChange={handleNameChange}
                 />
               </div>
               <div className="mb-3">
@@ -78,7 +112,7 @@ const MyProfile = () => {
                   id="email" 
                   placeholder="name@example.com" 
                   value={email}
-                  onChange={setEmail}
+                  onChange={handleEmailChange}
                 />
               </div>
               <div className="mb-3">
@@ -87,11 +121,11 @@ const MyProfile = () => {
                   id="bio" 
                   rows={3}
                   value={bio}
-                  onChange={setBio}
+                  onChange={handleBioChange}
                 ></CFormTextarea>
               </div>
               <div className="col-auto">
-                <CButton color="primary" type="submit" className="mb-3">
+                <CButton color="primary" type="submit" className="mb-3" onClick={save}>
                   Save
                 </CButton>
               </div>

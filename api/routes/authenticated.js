@@ -25,6 +25,10 @@ function requireAuth(req, res, next) {
  */
 router.use('/*', requireAuth);
 
+router.get('/ping', function(req, res) {
+  res.status(200)
+})
+
 router.get('/home', function(req, res) {
   const data = {
     stats: {
@@ -150,6 +154,63 @@ router.put('/simulation-save', function(req, res) {
   //   steps: 7,
   //   success: true
   // }
+})
+
+router.put('/profile-save', function(req, res) {
+  console.log(req.body)
+  // {
+  //   id: 1,
+  //   name: 'Robert De La Cruz',
+  //   email: 'robert.delacruz1551@hotmail.com',
+  //   bio: 'This is bio...'
+  // }
+})
+
+router.get('/administrator/users', function(req, res) {
+  res.json([
+    {id: 1, name: 'Robert De La Cruz', email: 'robert.delacruz1551@hotmail.com', status:'Active'},
+  ])
+})
+
+router.put('/administrator/user-status-change', function(req, res) {
+  console.log(req.body);
+  // {
+  //    id: '1', 
+  //    status: 'active',
+  // }
+  res.status(200);
+})
+
+router.get('/administrator/maps', function(req, res) {
+  res.json([
+    {id: 1, title: 'Simple board game', description: 'Some description that I wrote just for testing'},
+  ])
+})
+
+router.get('/administrator/maps/editor/:id', function(req, res) {
+  const data = {
+    title: 'Simple board game',
+    description: 'A small map designed to introduce the application to the player',
+    board: {
+      layout: [
+        [[0],  [0],  [0],  [0],  [0]],
+        [[0],  [0],  [0],  [0],  [0]],
+        [[0],  [0],  [0],  [0],  [0]],
+        [[0],  [0],  [0],  [0],  [0]],
+        [[0],  [0],  [0],  [0],  [0]],
+      ],
+      start: [0,0],
+      end: [4,3],
+      current: [0,0],
+      obstacles: 6,
+    },
+  };
+  res.json(data);
+})
+
+router.post('/administrator/maps/editor/:id', function(req, res) {
+  console.log(req.body)
+  res.status(200);
 })
 
 module.exports = router;
