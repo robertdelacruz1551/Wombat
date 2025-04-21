@@ -96,12 +96,12 @@ const MapEditor = () => {
   }
 
   const handleTitleChange = (event) => {
-    const newTitle = event.target.title 
+    const newTitle = event.target.value 
     setTitle(newTitle)
   }
 
   const handleDescriptionChange = (event) => {
-    const newDescription = event.target.description
+    const newDescription = event.target.value
     setDescription(newDescription)
   }
 

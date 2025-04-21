@@ -1,14 +1,12 @@
 /* eslint-disable no-const-assign */
 /* eslint-disable prettier/prettier */
+/* eslint-disable react/prop-types */
 import React, { Suspense, useEffect } from 'react'
 import { HashRouter, Route, Routes, Navigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
 import { CSpinner, useColorModes } from '@coreui/react'
 import './scss/style.scss'
-
-/* eslint-disable react/prop-types */ 
-// TODO: upgrade to latest eslint tooling
 
 // Containers
 const DefaultLayout = React.lazy(() => import('./layout/DefaultLayout'))
@@ -19,24 +17,20 @@ const Register = React.lazy(() => import('./wombat/Register'))
 const Page404 = React.lazy(() => import('./wombat/Page404'))
 const Page500 = React.lazy(() => import('./wombat/Page500'))
 
-// Mock authentication function
-// const isAuthenticated = () => {
-//   return !!localStorage.getItem('token')
-// }
 const isAuthenticated = async () => {
   const token = localStorage.getItem('token')
-  console.log('running RouteGuard')
   if (!token) {
     return false
   } else {
     try {
-      const response = await fetch('http://localhost:4000/authenticate/ping', {
+      const response = await fetch('http://localhost:4000/authenticated/ping', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`,
         }
       })
+      console.log(response.ok)
       return response.ok
     } catch (error) {
       return false

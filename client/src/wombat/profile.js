@@ -18,7 +18,6 @@ const MyProfile = () => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [bio, setBio] = useState('')
-  const navigate = useNavigate()
 
   const handleNameChange = (event) => {
     if (event.target.name !== '') {

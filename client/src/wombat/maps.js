@@ -59,9 +59,15 @@ const Maps = () => {
               <CTable align="moddle" className="mb-0 border" hover responsive>
                 <CTableHead className="text-nowrap">
                   <CTableRow>
-                  <CTableHeaderCell className="bg-body-tertiary"></CTableHeaderCell>
-                  <CTableHeaderCell className="bg-body-tertiary">Title</CTableHeaderCell>
-                  <CTableHeaderCell className="bg-body-tertiary">Description</CTableHeaderCell>
+                    <CTableHeaderCell className="bg-body-tertiary">
+                      <Link to={`/map/0/editor`}>
+                        <CButton color="primary" size="sm">
+                          New
+                        </CButton>
+                      </Link>
+                    </CTableHeaderCell>
+                    <CTableHeaderCell className="bg-body-tertiary">Title</CTableHeaderCell>
+                    <CTableHeaderCell className="bg-body-tertiary">Description</CTableHeaderCell>
                   </CTableRow>
                 </CTableHead>
                 <CTableBody>

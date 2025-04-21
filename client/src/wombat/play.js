@@ -120,7 +120,7 @@ const MapPlay = () => {
   }
 
   const load = async () => {
-    const response = await fetch(`http://localhost:4000/authenticated/play/${id}`, {
+    const response = await fetch(`http://localhost:4000/authenticated/map/${id}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',

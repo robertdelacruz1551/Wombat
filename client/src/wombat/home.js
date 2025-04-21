@@ -31,7 +31,8 @@ const Dashboard = () => {
   const load = async () => {
     // event.preventDefault()
     try {
-      const response = await fetch('http://localhost:4000/authenticated/home', {
+      const user = Number(localStorage.getItem('user'))
+      const response = await fetch(`http://localhost:4000/authenticated/home/${user}`, {
         method: 'GET', 
         headers: {
           'Content-Type': 'application/json',
@@ -54,7 +55,7 @@ const Dashboard = () => {
 
   return (
     <>
-      <CRow>
+      {/* <CRow>
         <CCol xs={6}>
           <CWidgetStatsB
             className="mb-3"
@@ -88,7 +89,7 @@ const Dashboard = () => {
             value={data.stats.times.value}
           />
         </CCol>
-      </CRow>
+      </CRow> */}
       <CCard className="mb-4">
         <CCardBody>
           <CRow>
@@ -121,10 +122,10 @@ const Dashboard = () => {
                           </CButton>
                         </Link>
                       </CTableDataCell>
-                      <CTableDataCell className="text-left">{item.name}</CTableDataCell>
+                      <CTableDataCell className="text-left">{item.title}</CTableDataCell>
                       <CTableDataCell className="text-left">{item.description}</CTableDataCell>
-                      <CTableDataCell className="text-left">{item.obstacles}</CTableDataCell>
-                      <CTableDataCell className="text-left">{item.size}</CTableDataCell>
+                      <CTableDataCell className="text-left">{item.board.obstacles}</CTableDataCell>
+                      <CTableDataCell className="text-left">{`${item.board.layout[0].length} x ${item.board.layout.length}`}</CTableDataCell>
                     </CTableRow>
                   ))}
                 </CTableBody>
@@ -153,18 +154,18 @@ const Dashboard = () => {
                     <CTableHeaderCell className="bg-body-tertiary">Obstacle</CTableHeaderCell>
                     <CTableHeaderCell className="bg-body-tertiary">Steps</CTableHeaderCell>
                     <CTableHeaderCell className="bg-body-tertiary">
-                      Latest Simulation
+                      Successful
                     </CTableHeaderCell>
                   </CTableRow>
                 </CTableHead>
                 <CTableBody>
                   {data.routines.map((item, index) => (
                     <CTableRow v-for="item in tableItems" key={index}>
-                      <CTableDataCell className="text-left">{item.name}</CTableDataCell>
+                      <CTableDataCell className="text-left">{item.map}</CTableDataCell>
                       <CTableDataCell className="text-left">{item.time}</CTableDataCell>
-                      <CTableDataCell className="text-left">{item.obstacle}</CTableDataCell>
+                      <CTableDataCell className="text-left">{item.obstacles}</CTableDataCell>
                       <CTableDataCell className="text-left">{item.steps}</CTableDataCell>
-                      <CTableDataCell className="text-left">{item.latestRun}</CTableDataCell>
+                      <CTableDataCell className="text-left">{item.success? 'Yes' : 'No'}</CTableDataCell>
                     </CTableRow>
                   ))}
                 </CTableBody>

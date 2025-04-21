@@ -26,10 +26,71 @@ function requireAuth(req, res, next) {
 router.use('/*', requireAuth);
 
 router.post('/ping', function(req, res) {
-  res.status(200)
+  res.status(200).json({});
 })
 
-router.get('/home', function(req, res) {
+// const data = {
+//   stats: {
+//     simulations: {
+//       value: '10',
+//       progress: 12,
+//     },
+//     successful: {
+//       value: '89.9%',
+//       progress: 75,
+//     },
+//     times: {
+//       value: '89.9%',
+//       progress: 75,
+//     },
+//   },
+//   routines: [
+//     {
+//       id: '1232323',
+//       name: 'My first routine',
+//       time: '10 sec ago',
+//       obstacle: 'Gator tooth',
+//       steps: 10,
+//       latestRun: 'Jan 1, 2023',
+//     },
+//   ],
+//   maps: [
+//     {
+//       id: '8293282',
+//       name: 'Gattor Tooth',
+//       description: 'A small map designed to introduce the application to the player',
+//       obstacles: 0,
+//       size: 9,
+//     },
+//   ],
+// };
+
+router.get('/home/:id', async function(req, res) {
+  const user = Number(req.params.id);
+
+  const maps = await req.app.locals.db['map'].findMany({
+    select: {
+      id: true,
+      title: true,
+      description: true,
+      board: true,
+    }
+  });
+  const routines = await req.app.locals.db.simulations.findMany({
+    where: { user: user },
+    select: {
+      id: true,
+      user: true,
+      map: true,
+      time: true,
+      obstacles: true,
+      steps: true,
+      success: true,
+    },
+  });
+
+  console.log(routines)
+
   const data = {
     stats: {
       simulations: {
@@ -45,172 +106,170 @@ router.get('/home', function(req, res) {
         progress: 75,
       },
     },
-    routines: [
-      {
-        id: '1232323',
-        name: 'My first routine',
-        time: '10 sec ago',
-        obstacle: 'Gator tooth',
-        steps: 10,
-        latestRun: 'Jan 1, 2023',
-      },
-      {
-        id: '1232324',
-        name: 'My first routine',
-        time: '10 sec ago',
-        obstacle: 'Gator tooth',
-        steps: 10,
-        latestRun: 'Jan 1, 2023',
-      },
-      {
-        id: '1232325',
-        name: 'My first routine',
-        time: '10 sec ago',
-        obstacle: 'Gator tooth',
-        steps: 10,
-        latestRun: 'Jan 1, 2023',
-      },
-      {
-        id: '1232326',
-        name: 'My first routine',
-        time: '10 sec ago',
-        obstacle: 'Gator tooth',
-        steps: 10,
-        latestRun: 'Jan 1, 2023',
-      },
-    ],
-    maps: [
-      {
-        id: '8293282',
-        name: 'Gattor Tooth',
-        description: 'A small map designed to introduce the application to the player',
-        obstacles: 0,
-        size: 9,
-      },
-    ],
-  };
-
-  res.json(data);
-})
-
-router.post('/profile', function(req, res) {
-  const data = {
-    name: 'Robert De La Cruz',
-    email: 'robert.delacruz1551@hotmail.com',
-    bio: 'This is bio...',
-  };
-  res.json(data);
-})
-
-router.get('/map/:id', function(req, res) {
-  const data = {
-    title: 'Simple board game',
-    description: 'A small map designed to introduce the application to the player',
-    board: {
-      layout: [
-        [[0,1],[0],  [0],  [0],  [0]],
-        [[0], [-1],  [0], [-1],  [0]],
-        [[0], [-1],  [0],  [0],  [0]],
-        [[0], [-1], [-1],  [0], [-1]],
-        [[0],  [0],  [0],  [3],  [0]],
-      ],
-      start: [0,0],
-      end: [4,3],
-      current: [0,0],
-      obstacles: 6,
-    },
+    routines: routines,
+    maps: maps,
   }
+  res.json(data);
+})
+
+router.post('/profile', async function(req, res) {
+  const id = Number(req.body.id);
+  const data = await req.app.locals.db.user.findUnique({
+    where: { id: id },
+    select: {
+      name: true,
+      email: true,
+      bio: true,
+    }
+  });
   res.json(data);  
 })
 
-router.get('/play/:id', function(req, res) {
-  const data = {
-    title: 'Simple board game',
-    description: 'A small map designed to introduce the application to the player',
-    board: {
-      layout: [
-        [[0,1],[0],  [0],  [0],  [0]],
-        [[0], [-1],  [0], [-1],  [0]],
-        [[0], [-1],  [0],  [0],  [0]],
-        [[0], [-1], [-1],  [0], [-1]],
-        [[0],  [0],  [0],  [3],  [0]],
-      ],
-      start: [0,0],
-      end: [4,3],
-      current: [0,0],
-      obstacles: 6,
-    },
-  }
+router.get('/map/:id', async function(req, res) {
+  const id = Number(req.params.id);
+  const data = await req.app.locals.db['map'].findUnique({ where: { id: id } });
   res.json(data);  
 })
 
-router.put('/simulation-save', function(req, res) {
-  console.log(req.body);
-  // {
-  //   user: 1,
-  //   map: 'Simple board game',
-  //   time: '6.263 seconds',
-  //   obstacles: 6,
-  //   steps: 7,
-  //   success: true
-  // }
-})
-
-router.put('/profile-save', function(req, res) {
-  console.log(req.body)
-  // {
-  //   id: 1,
-  //   name: 'Robert De La Cruz',
-  //   email: 'robert.delacruz1551@hotmail.com',
-  //   bio: 'This is bio...'
-  // }
-})
-
-router.get('/administrator/users', function(req, res) {
-  res.json([
-    {id: 1, name: 'Robert De La Cruz', email: 'robert.delacruz1551@hotmail.com', status:'Active'},
-  ])
-})
-
-router.put('/administrator/user-status-change', function(req, res) {
-  console.log(req.body);
-  // {
-  //    id: '1', 
-  //    status: 'active',
-  // }
-  res.status(200);
-})
-
-router.get('/administrator/maps', function(req, res) {
-  res.json([
-    {id: 1, title: 'Simple board game', description: 'Some description that I wrote just for testing'},
-  ])
-})
-
-router.get('/administrator/maps/editor/:id', function(req, res) {
-  const data = {
-    title: 'Simple board game',
-    description: 'A small map designed to introduce the application to the player',
-    board: {
-      layout: [
-        [[0],  [0],  [0],  [0],  [0]],
-        [[0],  [0],  [0],  [0],  [0]],
-        [[0],  [0],  [0],  [0],  [0]],
-        [[0],  [0],  [0],  [0],  [0]],
-        [[0],  [0],  [0],  [0],  [0]],
-      ],
-      start: [0,0],
-      end: [4,3],
-      current: [0,0],
-      obstacles: 6,
+router.put('/simulation-save', async function(req, res) {
+  const { user, map, time, obstacles, steps, success } = req.body;
+  const record = await req.app.locals.db.simulations.create({
+    data: {
+      user: user, 
+      map: map, 
+      time: time, 
+      obstacles: obstacles, 
+      steps: steps, 
+      success: success
     },
-  };
+    select: {
+      user: true, 
+      map: true, 
+      time: true, 
+      obstacles: true, 
+      steps: true, 
+      success: true
+    }
+  })
+  res.json(record);
+})
+
+router.put('/profile-save', async function(req, res) {
+  try {
+    const { id, name, email, bio } = req.body;
+    const status = 'Active';
+    const record = await req.app.locals.db.user.update({
+      where: {id: Number(id)},
+      data: {
+        name: name,
+        email: email,
+        bio: bio,
+        status: status,
+      },
+      select: {
+        name: true,
+        email: true,
+        bio: true,
+        status: true,
+      }
+    })
+    res.json(record);
+  } catch (error) {
+    res.status(404).json({})
+  }
+})
+
+router.get('/administrator/users', async function(req, res) {
+  const data = await req.app.locals.db.user.findMany();
   res.json(data);
 })
 
-router.post('/administrator/maps/editor/:id', function(req, res) {
-  console.log(req.body)
-  res.status(200);
+router.put('/administrator/user-status-change', async function(req, res) {
+  try {
+    const { id, curr } = req.body;
+    const nstatus = curr === 'Active'? 'Deactivated' : curr
+    const record = await req.app.locals.db.user.update({
+      where: {id: Number(id)},
+      data: {
+        status: nstatus,
+      }
+    })
+    res.json(record);
+  } catch (error) {
+    res.status(404).json({})
+  }
+})
+
+router.get('/administrator/maps', async function(req, res) {
+  const data = await req.app.locals.db['map'].findMany();
+  res.json(data);
+})
+
+router.get('/administrator/maps/editor/:id', async function(req, res) {  
+  const id = Number(req.params.id);
+  const defaultrec = {
+    id: id,
+    title: '',
+    description: '',
+    board: {
+      layout: [[[0]]],
+      start: [0,0],
+      end: [0,0],
+      current: [0,0],
+      obstacles: 0,
+    },
+  };
+  if (id != undefined && id !=0) {
+    const data = await req.app.locals.db['map'].findUnique({ where: { id: id } });
+    if (!data) {
+      return res.status(404).json(defaultrec);
+    } else {
+      res.json(data);
+    }
+  } else {
+    res.json(defaultrec);
+  }
+})
+
+router.post('/administrator/maps/editor/:id', async function(req, res) {
+  try {
+    const { id, title, description, board } = req.body;
+    if (Number(id) === 0) {
+      const record = await req.app.locals.db['map'].create({
+        data: {
+          title: title,
+          description: description,
+          board: board,
+        },
+        select: {
+          id: true,
+          title: true,
+          description: true,
+          board: true,
+        }
+      })
+      res.json(record);
+    } else {
+      const record = await req.app.locals.db['map'].update({
+        where: {id: Number(id)},
+        data: {
+          title: title,
+          description: description,
+          board: board,
+        },
+        select: {
+          id: true,
+          title: true,
+          description: true,
+          board: true,
+        }
+      })
+      res.json(record);
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(404).json({});
+  }
 })
 
 module.exports = router;
