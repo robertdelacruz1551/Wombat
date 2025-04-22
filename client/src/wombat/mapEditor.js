@@ -8,12 +8,16 @@ import {
   CFormLabel,
   CFormTextarea,
   CFormInput,
-  CInputGroup,
+  // CInputGroup,
   CButtonGroup,
   CInputGroupText,
 } from '@coreui/react'
 import { Board } from 'src/components'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import {
+  // Link,
+  // useNavigate,
+  useParams
+} from 'react-router-dom'
 
 const MapEditor = () => {
   const { id } = useParams()
@@ -22,9 +26,9 @@ const MapEditor = () => {
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
   const [layout, setLayout] = useState([])
-  const [start, setStart] = useState([0, 0])
-  const [end, setEnd] = useState([0, 0])
-  const [obstacles, setObstacles] = useState(0)
+  // const [start, setStart] = useState([0, 0])
+  // const [end, setEnd] = useState([0, 0])
+  // const [obstacles, setObstacles] = useState(0)
 
   const load = async () => {
     const url = `http://localhost:4000/authenticated/administrator/maps/editor/${id}`
@@ -41,9 +45,9 @@ const MapEditor = () => {
       setTitle(data.title)
       setDescription(data.description)
       setLayout(data.board.layout)
-      setStart(data.board.start)
-      setEnd(data.board.end)
-      setObstacles(data.board.obstacles)
+      // setStart(data.board.start)
+      // setEnd(data.board.end)
+      // setObstacles(data.board.obstacles)
       setRows(data.board.layout.length)
       setCols(data.board.layout[0].length)
     }
@@ -74,7 +78,7 @@ const MapEditor = () => {
 
   const save = async () => {
     const url = `http://localhost:4000/authenticated/administrator/maps/editor/${id}`
-    const response = await fetch(url, {
+    await fetch(url, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

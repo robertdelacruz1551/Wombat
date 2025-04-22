@@ -1,6 +1,5 @@
 /* eslint-disable prettier/prettier */
 import React, { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
 import {
   CButton,
   CCard,
@@ -20,18 +19,18 @@ const MyProfile = () => {
   const [bio, setBio] = useState('')
 
   const handleNameChange = (event) => {
-    if (event.target.name !== '') {
-      setName(event.target.name)
+    if (event.target.value !== '') {
+      setName(event.target.value)
     }
   }
 
   const handleEmailChange = (event) => {
-    if (event.target.email !== '') {
-      setEmail(event.target.email) 
+    if (event.target.value !== '') {
+      setEmail(event.target.value) 
     }
   }
 
-  const handleBioChange = (event) => { setBio(event.target.bio) }
+  const handleBioChange = (event) => { setBio(event.target.value) }
 
   const load = async () => {
     try {

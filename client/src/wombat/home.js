@@ -13,7 +13,6 @@ import {
   CTableHead,
   CTableHeaderCell,
   CTableRow,
-  CWidgetStatsB,
   CButton,
 } from '@coreui/react'
 
@@ -55,41 +54,6 @@ const Dashboard = () => {
 
   return (
     <>
-      {/* <CRow>
-        <CCol xs={6}>
-          <CWidgetStatsB
-            className="mb-3"
-            color="success"
-            inverse
-            progress={{ value: data.stats.simulations.progress }}
-            text="Progress"
-            title="Simulations"
-            value={data.stats.simulations.value}
-          />
-        </CCol>
-        <CCol xs={3}>
-          <CWidgetStatsB
-            className="mb-3"
-            color="primary"
-            inverse
-            progress={{ value: data.stats.successful.progress }}
-            text="Progress"
-            title="Successful simulations"
-            value={data.stats.successful.value}
-          />
-        </CCol>
-        <CCol xs={3}>
-          <CWidgetStatsB
-            className="mb-3"
-            color="primary"
-            inverse
-            progress={{ value: data.stats.times.progress }}
-            text="Progress"
-            title="Best time"
-            value={data.stats.times.value}
-          />
-        </CCol>
-      </CRow> */}
       <CCard className="mb-4">
         <CCardBody>
           <CRow>

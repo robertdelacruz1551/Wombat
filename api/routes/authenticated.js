@@ -29,42 +29,6 @@ router.post('/ping', function(req, res) {
   res.status(200).json({});
 })
 
-// const data = {
-//   stats: {
-//     simulations: {
-//       value: '10',
-//       progress: 12,
-//     },
-//     successful: {
-//       value: '89.9%',
-//       progress: 75,
-//     },
-//     times: {
-//       value: '89.9%',
-//       progress: 75,
-//     },
-//   },
-//   routines: [
-//     {
-//       id: '1232323',
-//       name: 'My first routine',
-//       time: '10 sec ago',
-//       obstacle: 'Gator tooth',
-//       steps: 10,
-//       latestRun: 'Jan 1, 2023',
-//     },
-//   ],
-//   maps: [
-//     {
-//       id: '8293282',
-//       name: 'Gattor Tooth',
-//       description: 'A small map designed to introduce the application to the player',
-//       obstacles: 0,
-//       size: 9,
-//     },
-//   ],
-// };
-
 router.get('/home/:id', async function(req, res) {
   const user = Number(req.params.id);
 
@@ -88,8 +52,6 @@ router.get('/home/:id', async function(req, res) {
       success: true,
     },
   });
-
-  console.log(routines)
 
   const data = {
     stats: {

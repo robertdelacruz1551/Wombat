@@ -101,7 +101,14 @@ const MapPlay = () => {
             board.layout[move[0]][move[1]].push( 1)
             board.current = move
             if (i === instructions.length - 1) { // check if winner
-              setSuccess((board.end[0] === move[0] && board.end[1] === move[1]))
+              let succ = true;
+              for (let g = 0; g < move.length; g++) {
+                if (board.end[g] !== move[g]) {
+                  succ = false;
+                }
+              }
+              console.log(succ)
+              setSuccess(succ)
               timespent = (Date.now() - startTime) / 1000
               save()
             }
@@ -140,6 +147,14 @@ const MapPlay = () => {
   }
 
   const save = async () => {
+    console.log({
+      user: Number(localStorage.getItem('user')),
+      map: title,
+      time: `${timespent} seconds`,
+      obstacles: board.obstacles,
+      steps: instructions.length,
+      success: success,
+    })
     await fetch('http://localhost:4000/authenticated/simulation-save', {
       method: 'PUT',
       headers: {
